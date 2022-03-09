@@ -8,5 +8,5 @@ import Foundation
 
 public protocol Listener
 {
-    func accept() -> Connection
+    func accept() throws -> Connection
 }
