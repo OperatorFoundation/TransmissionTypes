@@ -9,4 +9,5 @@ import Foundation
 public protocol Listener
 {
     func accept() throws -> Connection
+    func close()
 }
