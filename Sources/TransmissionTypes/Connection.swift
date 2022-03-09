@@ -15,6 +15,8 @@ public protocol Connection
     func write(data: Data) -> Bool
 
     func writeWithLengthPrefix(data: Data, prefixSizeInBits: Int) -> Bool
+
+    func close()
 }
 
 public enum ConnectionType
