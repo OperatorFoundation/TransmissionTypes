@@ -40,11 +40,21 @@ public func readWithLengthPrefix(prefixSizeInBits: Int, connection: Transmission
             return nil
     }
 
+    guard length > 0 else
+    {
+        return nil
+    }
+
     return connection.read(size: length)
 }
 
 public func writeWithLengthPrefix(data: Data, prefixSizeInBits: Int, connection: TransmissionTypes.Connection) -> Bool
 {
+    guard data.count > 0 else
+    {
+        return false
+    }
+
     let dataSize = data.count
     switch prefixSizeInBits
     {
