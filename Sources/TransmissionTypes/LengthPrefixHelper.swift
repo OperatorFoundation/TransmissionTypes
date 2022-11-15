@@ -9,14 +9,11 @@ import Foundation
 
 import Datable
 
-public func readWithLengthPrefix(prefixSizeInBits: Int, connection: TransmissionTypes.Connection, lock: DispatchSemaphore) -> Data?
+public func readWithLengthPrefix(prefixSizeInBits: Int, connection: TransmissionTypes.Connection) -> Data?
 {
-    lock.wait()
-
     let prefixSizeInBytes = prefixSizeInBits * 8
     guard let lengthData = connection.read(size: prefixSizeInBytes) else
     {
-        lock.signal()
         return nil
     }
 
@@ -40,19 +37,15 @@ public func readWithLengthPrefix(prefixSizeInBits: Int, connection: Transmission
             length = Int(uint64)
 
         default:
-            lock.signal()
             return nil
     }
 
     guard length > 0 else
     {
-        lock.signal()
         return nil
     }
 
-    let result = connection.read(size: length)
-    lock.signal()
-    return result
+    return connection.read(size: length)
 }
 
 public func writeWithLengthPrefix(data: Data, prefixSizeInBits: Int, connection: TransmissionTypes.Connection) -> Bool
