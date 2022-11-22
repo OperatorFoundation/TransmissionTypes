@@ -45,7 +45,7 @@ public func readWithLengthPrefix(prefixSizeInBits: Int, connection: Transmission
         return nil
     }
 
-    return connection.read(size: length)
+    return connection.unsafeRead(size: length)
 }
 
 public func writeWithLengthPrefix(data: Data, prefixSizeInBits: Int, connection: TransmissionTypes.Connection) -> Bool
