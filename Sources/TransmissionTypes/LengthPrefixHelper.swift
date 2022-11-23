@@ -11,7 +11,7 @@ import Datable
 
 public func readWithLengthPrefix(prefixSizeInBits: Int, connection: TransmissionTypes.Connection) -> Data?
 {
-    let prefixSizeInBytes = prefixSizeInBits * 8
+    let prefixSizeInBytes = prefixSizeInBits / 8
     guard let lengthData = connection.unsafeRead(size: prefixSizeInBytes) else
     {
         return nil
