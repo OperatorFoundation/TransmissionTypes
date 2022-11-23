@@ -39,6 +39,8 @@ public func readWithLengthPrefix(prefixSizeInBits: Int, connection: Transmission
         default:
             return nil
     }
+    
+    print("TransmissionTypes: readWithLengthPrefix found read length of \(length)")
 
     guard length > 0 else
     {
