@@ -22,7 +22,7 @@ public protocol Connection
     func close()
 }
 
-public enum ConnectionType
+public enum ConnectionType: Codable
 {
     case udp
     case tcp
