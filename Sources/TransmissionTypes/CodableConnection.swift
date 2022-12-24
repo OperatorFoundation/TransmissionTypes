@@ -38,6 +38,11 @@ public class CodableConnection<ReadType, WriteType> where ReadType: Codable, Wri
             throw CodableConnectionError.writeError
         }
     }
+
+    public func close()
+    {
+        self.connection.close()
+    }
 }
 
 public enum CodableConnectionError: Error
